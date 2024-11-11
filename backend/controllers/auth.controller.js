@@ -36,7 +36,7 @@ export const signup = async (req, res) => {
       return res.status(201).json({
         status: "success",
         data: {
-          users: newusersaved,
+          users: newuser,
         },
       });
     } else {
@@ -52,7 +52,10 @@ export const login = async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
-    const isPassCorrect = await bcrypt.compare(password, user?.password || "");
+    const isPassCorrect = await bcrypt.compare(
+      String(password),
+      user?.password || ""
+    );
     if (!user || !isPassCorrect) {
       return res.status(500).json({
         error: "invalid username or password!!",
