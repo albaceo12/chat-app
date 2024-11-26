@@ -1,17 +1,24 @@
-// import { useState } from "react";
+import { useState } from "react";
 // import { Link } from "react-router-dom";
 // import useLogin from "../../hooks/useLogin";
+
+import { Link } from "react-router-dom";
+import useLogin from "../../hooks/useLogin";
 
 const Login = () => {
   // const [username, setUsername] = useState("");
   // const [password, setPassword] = useState("");
-
+  const [inputlog, setInputlog] = useState({ username: "", password: "" });
   // const { loading, login } = useLogin();
-
+  const { loading, login } = useLogin();
   // const handleSubmit = async (e) => {
   // 	e.preventDefault();
   // 	await login(username, password);
   // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login(inputlog);
+  };
 
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
@@ -21,7 +28,7 @@ const Login = () => {
           <span className="text-blue-500"> ChatApp</span>
         </h1>
         {/* onSubmit={handleSubmit} */}
-        <form>
+        <form onSubmit={handleSubmit}>
           <div>
             <label className="label p-2">
               <span className="text-base label-text">Username</span>
@@ -31,6 +38,10 @@ const Login = () => {
               placeholder="Enter username"
               className="w-full input input-bordered h-10"
               // value={username}
+              value={inputlog.username}
+              onChange={(e) =>
+                setInputlog((pre) => ({ ...pre, username: e.target.value }))
+              }
               // onChange={(e) => setUsername(e.target.value)}
             />
           </div>
@@ -44,6 +55,10 @@ const Login = () => {
               placeholder="Enter Password"
               className="w-full input input-bordered h-10"
               // value={password}
+              value={inputlog.password}
+              onChange={(e) =>
+                setInputlog((pre) => ({ ...pre, password: e.target.value }))
+              }
               // onChange={(e) => setPassword(e.target.value)}
             />
           </div>
@@ -53,21 +68,20 @@ const Login = () => {
           >
             {"Don't"} have an account?
           </Link> */}
-          <a
-            href="#"
+          <Link
+            to="/signup"
             className="text-sm  hover:underline hover:text-blue-600 mt-2 inline-block"
           >
             Don't have an account?
-          </a>
+          </Link>
           <div>
             {/* disabled={loading} */}
-            <button className="btn btn-block btn-sm mt-2">
-              {/* {loading ? (
+            <button disabled={loading} className="btn btn-block btn-sm mt-2">
+              {loading ? (
                 <span className="loading loading-spinner "></span>
               ) : (
                 "Login"
-              )} */}
-              Login
+              )}
             </button>
           </div>
         </form>

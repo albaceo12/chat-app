@@ -29,7 +29,7 @@ export const sendMessage = async (req, res) => {
     // socket.io;
 
     Promise.all([await newmessage.save(), await conversation.save()]);
-    res.status(201).json({ newmessage });
+    res.status(201).json(newmessage);
   } catch (error) {
     console.log("error in sendMessage controller", error.message);
     res.status(500).json({ error: "internal server errro!!!" });
@@ -45,8 +45,9 @@ export const getMessage = async (req, res) => {
     if (!conversation) {
       return res.status(200).json([]);
     }
-    const msges = conversation.messages;
-    res.status(200).json(msges);
+    const message = conversation.messages;
+    console.log(message);
+    res.status(200).json(message);
   } catch (error) {
     console.log("error in sendMessage controller", error.message);
     res.status(500).json({ error: "internal server errro!!!" });
