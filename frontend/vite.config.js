@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "https://chat-app-realtime-9xh8.onrender.com/",
+  base: "./",
   plugins: [react()],
   server: {
     port: 5000,
