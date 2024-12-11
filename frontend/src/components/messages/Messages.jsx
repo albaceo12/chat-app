@@ -2,12 +2,15 @@ import { useEffect, useRef } from "react";
 import MessageSkeleton from "../skeletons/MessageSkeleton";
 import useGetMessages from "../../hooks/useGetMessages";
 import Message from "./Message";
+import useListenMessages from "../../hooks/useListenMessages";
+import useConversation from "../../zustand/useConversation";
 // import useListenMessages from "../../hooks/useListenMessages";
 
 const Messages = () => {
   const { messages, loading } = useGetMessages();
+  const { selectedConversation } = useConversation();
+  useListenMessages();
 
-  // useListenMessages();
   const lastMessageRef = useRef();
   // useEffect(() => {
   // 	setTimeout(() => {console.log(lastMessageRef)
@@ -15,7 +18,9 @@ const Messages = () => {
   // 	}, 100);
   // }, [messages]);
   useEffect(() => {
-    lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   }, [messages]);
   // console.log(messages);
   return (

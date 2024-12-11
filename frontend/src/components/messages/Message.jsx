@@ -14,8 +14,7 @@ const Message = (props) => {
     ? authuser.data.user.profilePic
     : selectedConversation?.profilePic;
   const bubbleBgColor = fromMe ? "bg-blue-500" : "";
-
-  // const shakeClass = message.shouldShake ? "shake" : "";
+  const shakeClass = props.message.shouldshake ? "shake" : "";
 
   return (
     // ${chatClassName}
@@ -27,7 +26,7 @@ const Message = (props) => {
       </div>
       <div
         // ${bubbleBgColor} ${shakeClass}
-        className={`chat-bubble text-white pb-2 ${bubbleBgColor}`}
+        className={`chat-bubble break-words text-white pb-2 ${bubbleBgColor} ${shakeClass}`}
       >
         {props.message.message}
       </div>

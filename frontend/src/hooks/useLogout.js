@@ -3,7 +3,7 @@ import { useAuthContext } from "../context/AuthContext";
 import { toast } from "react-hot-toast";
 const useLogout = () => {
   const [loading, setLoading] = useState(false);
-  const { authuser, setAuthuser } = useAuthContext();
+  const { authuser, setAuthuser, setUnreadMessages } = useAuthContext();
   const logout = async () => {
     setLoading(true);
     try {
@@ -19,6 +19,8 @@ const useLogout = () => {
       }
       setAuthuser(null);
       localStorage.removeItem("chat-user");
+      localStorage.removeItem("unreadmsg");
+      setUnreadMessages({});
     } catch (error) {
       toast.error(error.message);
     } finally {
