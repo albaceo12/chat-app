@@ -18,16 +18,17 @@ function useSignup() {
         body: JSON.stringify(x),
       });
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       if (data.error) {
         throw new Error(data.error);
       }
       setAuthuser(data);
       localStorage.setItem("chat-user", JSON.stringify(data));
     } catch (error) {
+      console;
       toast.error(error.message);
     } finally {
-      setLoading(true);
+      setLoading(false);
     }
   };
   return { loading, signup };

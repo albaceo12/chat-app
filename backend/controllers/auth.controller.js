@@ -36,7 +36,7 @@ export const signup = async (req, res) => {
       return res.status(201).json({
         status: "success",
         data: {
-          users: newuser,
+          user: newuser,
         },
       });
     } else {
