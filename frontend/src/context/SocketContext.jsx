@@ -10,7 +10,7 @@ export const SocketContextProvider = (props) => {
   useEffect(() => {
     if (authuser) {
       //   console.log(authuser.data.user._id);
-      const socket = io("http://localhost:5000", {
+      const socket = io("https://chat-app-realtime-9xh8.onrender.com/", {
         query: {
           userId: authuser.data.user._id,
         },
